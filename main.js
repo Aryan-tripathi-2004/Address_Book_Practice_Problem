@@ -1,25 +1,26 @@
+const addressBookManager = require('./addressBookManager');
 const addContact = require('./addContact');
-const viewContacts = require('./viewContacts');
 const updateContact = require('./updateContact');
 const deleteContact = require('./deleteContact');
+const viewContacts = require('./viewContacts'); // Import the new function
 
-console.log("\n✅ Adding Valid Contact...");
-const contact1 = addContact("John", "Doe", "123 Main St", "New York", "NY", "12345", "123-456-7890", "john.doe@example.com");
-console.log("✔️ Contact Added:", contact1);
+console.log("\n📘 Creating Address Book...");
+addressBookManager.createAddressBook("MyAddressBook");
 
-console.log("\n📋 Viewing All Contacts:");
-console.log(viewContacts());
+console.log("\n✅ Adding Contact...");
+addContact("MyAddressBook", "John", "Doe", "123 Main St", "New York", "NY", "12345", "123-456-7890", "john.doe@example.com");
 
-// ✅ Updating Contact
+console.log("\n📋 Viewing Contacts After Adding...");
+viewContacts("MyAddressBook"); // ✅ View contacts after adding
+
 console.log("\n✏️ Updating Contact...");
-const updatedContact = updateContact(1, { phoneNumber: "111-222-3333", email: "new.email@example.com" });
-console.log("✔️ Updated Contact:", updatedContact);
+updateContact("MyAddressBook", 1, { phoneNumber: "111-222-3333", email: "new.email@example.com" });
 
-// ✅ Deleting Contact
+console.log("\n📋 Viewing Contacts After Update...");
+viewContacts("MyAddressBook"); // ✅ View contacts after updating
+
 console.log("\n🗑️ Deleting Contact...");
-const deletedContact = deleteContact(1);
-console.log("✔️ Deleted Contact:", deletedContact);
+deleteContact("MyAddressBook", 1);
 
-// 📋 Final Contact List
-console.log("\n📋 Final Contact List:");
-console.log(viewContacts());
+console.log("\n📋 Viewing Contacts After Deletion...");
+viewContacts("MyAddressBook"); // ✅ View contacts after deleting
